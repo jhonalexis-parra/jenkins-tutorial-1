@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-    tools {
-        maven "maven-nodo-principal"
-    }
+    // tools {
+    //     maven "maven-nodo-principal"
+    // }
 
     stages {
         stage('Build') {
