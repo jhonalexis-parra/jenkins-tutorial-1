@@ -1,17 +1,15 @@
 pipeline {
     agent any
-
-    // tools {
-    //     maven "maven-nodo-principal"
-    // }
+    tools {
+        maven "maven-nodo-principal"
+    }
 
     stages {
         stage('Build') {
             steps {
-                dir (‘maven-adderapp’){
-                    sh 'mvn -DskipTests clean package'
+                dir (‘maven-adderapp’) {
+                 sh 'mvn -DskipTests clean package'
                 }
-                echo 'Building..'
             }
         }
         stage('Test') {
@@ -25,15 +23,11 @@ pipeline {
             }
         }
     }
-
     post {
         success {
             dir (‘maven-adderapp’) {
-                archiveArtifacts artifacts: 'target/*.jar', fingerprint:
-
-                true
-
+                archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
             }
-        }   
-    }
+        }
+   }
 }
