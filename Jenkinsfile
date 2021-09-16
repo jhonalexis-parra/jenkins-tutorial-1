@@ -7,8 +7,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                dir (‘maven-adderapp’) {
-                 sh 'mvn -DskipTests clean package'
+                dir ('maven-adderapp') {
+                  sh 'mvn -DskipTests clean package'
                 }
             }
         }
@@ -23,11 +23,13 @@ pipeline {
             }
         }
     }
+
     post {
         success {
-            dir (‘maven-adderapp’) {
-                archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+            dir ('maven-adderapp') {
+              archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
             }
+            //junit 'build/reports/**/*.xml'
         }
-   }
+    }
 }
